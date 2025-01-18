@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function (query, apiUrl, delay = 2000) {
     const [debouncedQuery, setDebouncedQuery] = useState(query);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
