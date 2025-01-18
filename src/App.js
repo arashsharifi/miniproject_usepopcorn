@@ -12,6 +12,7 @@ import ErrorMessage from "./components/ui/ErrorMessage";
 import noimgAvatar from "../src/img/no_searching-removebg-preview.png";
 import useFetchMovies from "./hook/useFetchMovies";
 import MovieDetails from "./components/MovieDetails";
+import useKeydown from "./hook/useKeydown";
 
 
 const average = (arr) =>
@@ -69,26 +70,14 @@ export default function App() {
   }, [watched]);
 
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        romoveIdHandler();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  useKeydown("Escape", romoveIdHandler);
 
   return (
     <>
       <NavBar>
         <Logo />
         <Search query={query} setQuery={setQuery} />
-        {/* <NumList movies={movies} /> */}
+        <NumList movies={movies} />
       </NavBar>
       <Main>
         <ListBox>
